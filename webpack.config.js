@@ -1,5 +1,7 @@
 const path = require("path")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+const fileLoader = require.resolve("file-loader")
 
 module.exports = function (_env, argv) {
   const isProduction = argv.mode === "production"
@@ -17,6 +19,20 @@ module.exports = function (_env, argv) {
           test: /\.js?/,
           exclude: /node_modules/,
           loader: "babel-loader",
+        },
+        {
+          test: /\.css$/,
+          use: [
+            isProduction ? MiniCssExtractPlugin.loader : "style-loader",
+            "css-loader",
+          ],
+        },
+        {
+          test: /\.(eot|otf|ttf|woff|woff2)$/,
+          loader: fileLoader,
+          options: {
+            name: "static/media/[name].[contenthash:8].[ext]",
+          },
         },
         {
           test: /\.(png|jpg|gif)$/i,
@@ -47,9 +63,14 @@ module.exports = function (_env, argv) {
       },
     },
     plugins: [
+      isProduction &&
+        new MiniCssExtractPlugin({
+          filename: "assets/css/[name].[contenthash:8].css",
+          chunkFilename: "assets/css/[name].[contenthash:8].chunk.css",
+        }),
       new HtmlWebpackPlugin({
         template: path.resolve(__dirname, "public", "index.html"),
       }),
-    ],
+    ].filter(Boolean),
   }
 }
