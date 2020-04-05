@@ -4,7 +4,7 @@
 module.exports = {
   clearMocks: true,
   collectCoverage: true,
-  coverageDirectory: "coverage",
-  collectCoverageFrom: ["src/**/*js", "!src/**/*.style.js", "!src/index.js"],
-  setupFilesAfterEnv: ["./setupTests.js"],
+  coverageDirectory: 'coverage',
+  collectCoverageFrom: ['src/**/*js', '!src/**/*.style.js', '!src/index.js'],
+  setupFilesAfterEnv: ['./setupTests.js'],
 }
