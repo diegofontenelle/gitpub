@@ -1,14 +1,23 @@
-import React from "react"
-import style from "./App.style"
+import React from 'react'
+import { Provider } from 'react-redux'
+import { Button, Container, Title } from './App.style'
+import Theme from './shared/Theme'
+import store from './store/store'
+import Search from './components/Search/Search'
 
 const App = ({ callback }) => {
   return (
-    <div style={style.container} data-testid="app">
-      <h1>Live reload!</h1>
-      <button onClick={callback} data-testid="app-button">
-        Click me
-      </button>
-    </div>
+    <Provider store={store}>
+      <Theme>
+        <Container data-testid="app">
+          <Title>Live reload!</Title>
+          <Button onClick={callback} data-testid="app-button">
+            Click me
+          </Button>
+          <Search />
+        </Container>
+      </Theme>
+    </Provider>
   )
 }
 
