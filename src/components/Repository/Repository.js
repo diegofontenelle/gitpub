@@ -1,10 +1,10 @@
 import React from 'react'
-import { string } from 'prop-types'
+import { number, string } from 'prop-types'
 import {
   Container, Footer, Title,
 } from './Repository.style'
 
-const Card = ({ id, name, owner }) => (
+const Repository = ({ id, name, owner }) => (
   <Container>
     <Title>{name}</Title>
     <Footer>
@@ -14,10 +14,10 @@ const Card = ({ id, name, owner }) => (
   </Container>
 )
 
-Card.propTypes = {
-  id: string.isRequired,
+Repository.propTypes = {
+  id: number.isRequired,
   name: string.isRequired,
   owner: string.isRequired,
 }
 
-export default Card
+export default Repository
