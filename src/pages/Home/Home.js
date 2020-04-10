@@ -6,6 +6,7 @@ import Search from '../../components/Search/Search'
 import RepoList from '../../components/RepoList/RepoList'
 import Pagination from '../../components/Pagination'
 import EmptyState from '../../components/EmptyState'
+import RequestDuration from '../../components/RequestDuration'
 
 const Home = () => {
   const [query, setQuery] = useState('')
@@ -37,6 +38,7 @@ const Home = () => {
     <Container repos={repos}>
       <Background />
       <Search handleChange={handleChange} />
+      <RequestDuration />
       {repos && repos.length > 0 ? <RepoList data={repos} />
         : <EmptyState didFetch={didFetch} />}
       <Pagination />

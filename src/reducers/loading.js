@@ -9,7 +9,7 @@ export default (state = INITIAL_STATE, action) => {
     case TYPES.LOADING.SHOW:
       return { ...state, isLoading: true }
     case TYPES.LOADING.HIDE:
-      return { ...state, isLoading: false }
+      return { ...state, isLoading: false, duration: action.payload }
     default:
       return state
   }

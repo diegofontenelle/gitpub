@@ -42,7 +42,7 @@ describe('<Home />', () => {
     repoActions.getRepos.mockReturnValueOnce({
       type: 'GET_REPOS',
       payload: [{
-        id: '1',
+        id: 1,
         owner: { login: '1' },
         name: 'abc',
       }],
@@ -64,7 +64,7 @@ describe('<Home />', () => {
     repoActions.getRepos.mockReturnValueOnce({
       type: 'GET_REPOS',
       payload: [{
-        id: '1',
+        id: 1,
         owner: { login: '1' },
         name: 'abc',
       }],
@@ -105,5 +105,22 @@ describe('<Home />', () => {
     await waitFor(() => getByText(/Refreshing coffee and fetching data/))
 
     expect(getByTestId('loading-component')).toBeDefined()
+  })
+  it('should show request time after a request', async () => {
+    const { getByTestId } = render(<MockedProviderWithHome />)
+
+    repoActions.getRepos.mockImplementationOnce(() => ({
+      type: 'HIDE_LOADING', payload: 1,
+    }))
+
+    fireEvent.change(getByTestId('search-input'), {
+      target: {
+        value: '1234',
+      },
+    })
+
+    await waitFor(() => getByTestId('request-time'))
+
+    expect(getByTestId('request-time')).toBeDefined()
   })
 })
