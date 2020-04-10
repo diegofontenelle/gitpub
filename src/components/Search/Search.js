@@ -1,27 +1,23 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { repoActions } from '../../actions'
+import { func } from 'prop-types'
+import { SearchInput, SearchIcon, SearchContainer } from './Search.style'
 
-const Search = () => {
-  const repos = useSelector((state) => state.repos.data)
-  const dispatch = useDispatch()
+const Search = ({ handleChange }) => (
+  <>
+    <SearchContainer>
+      <SearchIcon />
+      <SearchInput
+        data-testid="search-input"
+        onChange={handleChange}
+        type="text"
+        placeholder="Start typing a repository name"
+      />
+    </SearchContainer>
+  </>
+)
 
-  function getRepo() {
-    dispatch(repoActions.getRepos('jackson'))
-  }
-
-  return (
-    <>
-      <ul>
-        {repos.map((repo) => (
-          <li key={repo.id}>{repo.name}</li>
-        ))}
-      </ul>
-      <button type="button" onClick={getRepo}>
-        Get repo
-      </button>
-    </>
-  )
+Search.propTypes = {
+  handleChange: func.isRequired,
 }
 
 export default Search
