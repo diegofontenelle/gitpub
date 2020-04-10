@@ -1,5 +1,4 @@
 import parse from 'github-parse-link'
-import axios from 'axios'
 import TYPES from './types'
 import api from '../shared/api'
 
@@ -33,10 +32,10 @@ const getRepos = query => async dispatch => {
     const pages = mountPaginationObject(links)
     dispatch({ type: TYPES.REPOS.GET, payload: response.data.items })
     dispatch({ type: TYPES.PAGINATION.SET, payload: pages })
+    dispatch({ type: TYPES.LOADING.HIDE, payload: response.duration })
   } catch (error) {
     dispatch({ type: TYPES.ERROR })
-  } finally {
-    dispatch({ type: TYPES.LOADING.HIDE })
+    dispatch({ type: TYPES.LOADING.HIDE, payload: error.duration })
   }
 }
 
@@ -44,16 +43,18 @@ const getReposByPage = url => async dispatch => {
   try {
     dispatch({ type: TYPES.LOADING.SHOW })
 
-    const response = await axios.get(url)
+    const endpoint = url.split('.com')[1]
+
+    const response = await api.get(endpoint)
     const links = parse(response.headers.link)
     const pages = mountPaginationObject(links)
 
     dispatch({ type: TYPES.REPOS.GET, payload: response.data.items })
     dispatch({ type: TYPES.PAGINATION.SET, payload: pages })
+    dispatch({ type: TYPES.LOADING.HIDE, payload: response.duration })
   } catch (error) {
     dispatch({ type: TYPES.ERROR })
-  } finally {
-    dispatch({ type: TYPES.LOADING.HIDE })
+    dispatch({ type: TYPES.LOADING.HIDE, payload: error.duration })
   }
 }
 
