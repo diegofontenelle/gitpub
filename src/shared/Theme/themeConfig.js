@@ -2,7 +2,7 @@ export default {
   colors: {
     primary: {
       dark: '#141414',
-      light: '#434343',
+      light: '#bfbfbf',
       main: '#262626',
     },
     secondary: {
@@ -11,15 +11,16 @@ export default {
       main: '#ffa940',
     },
     text: {
-      primary: '#434343',
-      secondary: '#595959',
+      light: '#bfbfbf',
+      link: '#326397',
+      main: '#434343',
     },
   },
   fonts: ['Roboto'],
   fontSizes: {
     small: '1rem',
-    medium: '2rem',
-    large: '3rem',
+    medium: '1.25rem',
+    large: '2rem',
   },
   spacing(times = 1) {
     const base = 8 / 10
