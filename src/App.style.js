@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 const Button = styled.button`
-  background-color: ${(props) => props.theme.colors.primary.main};
+  background-color: ${props => props.theme.colors.primary.main};
   box-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);
   border-radius: ${({ theme }) => theme.spacing(0.25)};
   color: #fff;
@@ -16,7 +16,13 @@ const Button = styled.button`
 `
 
 const Container = styled.main`
-  padding: ${({ theme }) => `${theme.spacing(2)} ${theme.spacing(4)}`};
+  display: flex;
+  max-width: 100%;
+  padding: ${({ theme }) => theme.spacing(1)};
+
+  @media(min-width: 1024px) {
+    padding: ${({ theme }) => theme.spacing(2)} ${({ theme }) => theme.spacing(4)};
+  }
 `
 
 const Title = styled.h1`
