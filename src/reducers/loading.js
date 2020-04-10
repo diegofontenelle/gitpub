@@ -1,15 +1,15 @@
 import TYPES from '../actions/types'
 
 const INITIAL_STATE = {
-  data: [],
+  isLoading: false,
 }
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case TYPES.REPOS.GET:
-      return { ...state, data: action.payload }
-    case TYPES.ERROR:
-      return { ...state }
+    case TYPES.LOADING.SHOW:
+      return { ...state, isLoading: true }
+    case TYPES.LOADING.HIDE:
+      return { ...state, isLoading: false }
     default:
       return state
   }
