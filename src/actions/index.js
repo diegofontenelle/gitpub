@@ -1,3 +1,4 @@
 import * as repoActions from './repos'
+import * as loadingActions from './loading'
 
-export { repoActions }
+export { loadingActions, repoActions }
