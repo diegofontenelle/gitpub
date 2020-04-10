@@ -36,6 +36,10 @@ module.exports = (_env, argv) => {
           },
         },
         {
+          test: /\.svg$/,
+          use: ['@svgr/webpack'],
+        },
+        {
           test: /\.(png|jpg|gif)$/i,
           use: {
             loader: 'url-loader',
@@ -64,8 +68,8 @@ module.exports = (_env, argv) => {
       },
     },
     plugins: [
-      isProduction &&
-        new MiniCssExtractPlugin({
+      isProduction
+        && new MiniCssExtractPlugin({
           filename: 'assets/css/[name].[contenthash:8].css',
           chunkFilename: 'assets/css/[name].[contenthash:8].chunk.css',
         }),

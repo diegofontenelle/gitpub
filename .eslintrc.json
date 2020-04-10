@@ -4,13 +4,7 @@
     "es6": true,
     "jest": true
   },
-  "extends": [
-    "plugin:react/recommended",
-    "airbnb",
-    "plugin:prettier/recommended",
-    "prettier",
-    "prettier/react"
-  ],
+  "extends": ["plugin:react/recommended", "airbnb"],
   "globals": {
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly"
@@ -30,6 +24,7 @@
     "react/forbid-prop-types": "off",
     "react-hooks/rules-of-hooks": "error",
     "semi": ["error", "never"],
-    "import/prefer-default-export": "off"
+    "import/prefer-default-export": "off",
+    "arrow-parens": ["error", "as-needed"]
   }
 }
