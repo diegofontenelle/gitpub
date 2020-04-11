@@ -67,12 +67,12 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run precommit"
+      "pre-commit": "lint-staged"
     }
   },
   "lint-staged": {
     "*.js": [
-      "lint",
+      "npm run lint",
       "jest --findRelatedTests"
     ]
   }

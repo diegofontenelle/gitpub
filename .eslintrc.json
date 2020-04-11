@@ -25,6 +25,9 @@
     "react-hooks/rules-of-hooks": "error",
     "semi": ["error", "never"],
     "import/prefer-default-export": "off",
-    "arrow-parens": ["error", "as-needed"]
+    "arrow-parens": ["error", "as-needed"],
+    "implicit-arrow-linebreak": "off",
+    "no-confusing-arrow": "off",
+    "object-curly-newline": "off"
   }
 }
