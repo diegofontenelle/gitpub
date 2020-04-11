@@ -34,7 +34,10 @@ const getRepos = query => async dispatch => {
     dispatch({ type: TYPES.PAGINATION.SET, payload: pages })
     dispatch({ type: TYPES.LOADING.HIDE, payload: response.duration })
   } catch (error) {
-    dispatch({ type: TYPES.ERROR })
+    dispatch({
+      type: TYPES.SNACKBAR.SHOW,
+      payload: { message: 'Something went wrong', variant: 'error' },
+    })
     dispatch({ type: TYPES.LOADING.HIDE, payload: error.duration })
   }
 }
@@ -58,7 +61,4 @@ const getReposByPage = url => async dispatch => {
   }
 }
 
-export {
-  getRepos,
-  getReposByPage,
-}
+export { getRepos, getReposByPage }
