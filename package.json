@@ -6,9 +6,11 @@
   "scripts": {
     "lint": "eslint src --report-unused-disable-directives && echo \"eslint: no lint errors\"",
     "lint:fix": "eslint src --fix && echo \"eslint: no lint errors\"",
+    "precommit": "npm run lint && npm run test",
     "start": "webpack-dev-server --open --mode development",
     "build": "webpack --mode production",
-    "test": "jest --coverage=false --watch"
+    "test": "jest --coverage=false",
+    "test:watch": "jest --coverage=false --watch"
   },
   "keywords": [],
   "author": "",
@@ -65,7 +67,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "npm run precommit"
     }
   },
   "lint-staged": {
