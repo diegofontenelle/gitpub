@@ -1,31 +1,26 @@
 import React from 'react'
-import {
-  render, fireEvent, waitFor,
-} from '@testing-library/react'
-import { applyMiddleware, createStore } from 'redux'
-import thunk from 'redux-thunk'
-import { Provider } from 'react-redux'
-import reducer from '../../reducers'
+import { render, fireEvent, waitFor } from '@testing-library/react'
 import { repoActions } from '../../actions'
 import Home from './Home'
-import Theme from '../../shared/Theme'
 import Loading from '../../components/Loading'
+import MockProvider from '../../shared/testHelpers/MockProvider'
+import Snackbar from '../../components/Snackbar'
 
 jest.mock('../../actions', () => ({
   repoActions: {
     getRepos: jest.fn(),
   },
+  snackbarActions: {
+    hideSnackbar: jest.fn(),
+  },
 }))
 
-const mockStore = createStore(reducer, applyMiddleware(thunk))
-
 const MockedProviderWithHome = () => (
-  <Provider store={mockStore}>
-    <Theme>
-      <Home />
-      <Loading />
-    </Theme>
-  </Provider>
+  <MockProvider>
+    <Home />
+    <Loading />
+    <Snackbar />
+  </MockProvider>
 )
 
 describe('<Home />', () => {
@@ -41,11 +36,15 @@ describe('<Home />', () => {
 
     repoActions.getRepos.mockReturnValueOnce({
       type: 'GET_REPOS',
-      payload: [{
-        id: 1,
-        owner: { login: '1' },
-        name: 'abc',
-      }],
+      payload: [
+        {
+          id: 1,
+          owner: {
+            login: '1',
+          },
+          name: 'abc',
+        },
+      ],
     })
 
     fireEvent.change(getByTestId('search-input'), {
@@ -63,11 +62,15 @@ describe('<Home />', () => {
 
     repoActions.getRepos.mockReturnValueOnce({
       type: 'GET_REPOS',
-      payload: [{
-        id: 1,
-        owner: { login: '1' },
-        name: 'abc',
-      }],
+      payload: [
+        {
+          id: 1,
+          owner: {
+            login: '1',
+          },
+          name: 'abc',
+        },
+      ],
     })
 
     expect(queryByTestId('pagination')).toBeNull()
@@ -75,7 +78,15 @@ describe('<Home />', () => {
   it('should show Pagination if there are enough results', async () => {
     const { getByText, getByTestId } = render(<MockedProviderWithHome />)
 
-    repoActions.getRepos.mockImplementationOnce(() => ({ type: 'SET_PAGINATION', payload: [{ index: 1, url: '1234' }] }))
+    repoActions.getRepos.mockImplementationOnce(() => ({
+      type: 'SET_PAGINATION',
+      payload: [
+        {
+          index: 1,
+          url: '1234',
+        },
+      ],
+    }))
 
     fireEvent.change(getByTestId('search-input'), {
       target: {
@@ -110,7 +121,8 @@ describe('<Home />', () => {
     const { getByTestId } = render(<MockedProviderWithHome />)
 
     repoActions.getRepos.mockImplementationOnce(() => ({
-      type: 'HIDE_LOADING', payload: 1,
+      type: 'HIDE_LOADING',
+      payload: 1,
     }))
 
     fireEvent.change(getByTestId('search-input'), {
@@ -122,5 +134,23 @@ describe('<Home />', () => {
     await waitFor(() => getByTestId('request-time'))
 
     expect(getByTestId('request-time')).toBeDefined()
+  })
+  it('should show error snackbar', async () => {
+    const { getByTestId } = render(<MockedProviderWithHome />)
+
+    repoActions.getRepos.mockImplementationOnce(() => ({
+      type: 'SHOW_SNACKBAR',
+      payload: 1,
+    }))
+
+    fireEvent.change(getByTestId('search-input'), {
+      target: {
+        value: '1234',
+      },
+    })
+
+    await waitFor(() => getByTestId('snackbar-error-icon'))
+
+    expect(getByTestId('snackbar-error-icon')).toBeDefined()
   })
 })
