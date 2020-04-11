@@ -1,8 +1,6 @@
 import React from 'react'
 import { bool } from 'prop-types'
-import {
-  Background, Computer, Container, Message,
-} from './EmptyState.style'
+import { Background, Computer, Container, Message } from './EmptyState.style'
 
 const EmptyState = ({ didFetch }) => {
   const mainMessage = didFetch

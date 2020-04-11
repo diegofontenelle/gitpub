@@ -6,8 +6,4 @@ const showLoading = () => ({
 
 const hideLoading = () => ({ type: TYPES.LOADING.HIDE })
 
-
-export {
-  hideLoading,
-  showLoading,
-}
+export { hideLoading, showLoading }

@@ -1,7 +1,11 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import {
-  DrinkContainer, DrinkContent, LoadingContainer, LoadingIcon, LoadingMessage,
+  DrinkContainer,
+  DrinkContent,
+  LoadingContainer,
+  LoadingIcon,
+  LoadingMessage,
 } from './Loading.style'
 
 const Loading = () => {
@@ -13,10 +17,7 @@ const Loading = () => {
         <LoadingIcon />
         <DrinkContainer>
           <DrinkContent />
-          <LoadingMessage>
-            Refreshing coffee
-            and fetching data
-          </LoadingMessage>
+          <LoadingMessage>Refreshing coffee and fetching data</LoadingMessage>
         </DrinkContainer>
       </LoadingContainer>
     )

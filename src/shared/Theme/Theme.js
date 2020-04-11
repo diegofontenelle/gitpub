@@ -1,7 +1,5 @@
 import React from 'react'
-import {
-  element, func, node, oneOfType,
-} from 'prop-types'
+import { element, func, node, oneOfType } from 'prop-types'
 import { ThemeProvider, createGlobalStyle } from 'styled-components'
 import theme from './themeConfig'
 
