@@ -5,6 +5,7 @@ import Theme from './shared/Theme'
 import store from './store'
 import Home from './pages/Home'
 import Loading from './components/Loading'
+import Snackbar from './components/Snackbar'
 
 const App = () => (
   <Provider store={store}>
@@ -13,6 +14,7 @@ const App = () => (
         <Home />
       </Container>
       <Loading />
+      <Snackbar />
     </Theme>
   </Provider>
 )
