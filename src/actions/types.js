@@ -11,6 +11,6 @@ export default {
   },
   SNACKBAR: {
     SHOW: 'SHOW_SNACKBAR',
-    HIDE: 'HIDE_LOADING',
+    HIDE: 'HIDE_SNACKBAR',
   },
 }

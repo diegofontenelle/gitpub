@@ -1,6 +1,11 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { SnackbarContainer, ErrorIcon, WarningIcon } from './Snackbar.style'
+import {
+  Container,
+  ErrorIcon,
+  SnackbarContainer,
+  WarningIcon,
+} from './Snackbar.style'
 import { snackbarActions } from '../../actions'
 
 const variants = {
@@ -13,10 +18,12 @@ const Snackbar = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    const handler = dispatch(snackbarActions.hideSnackbar)
-    if (open) {
-      setTimeout(handler, 4000)
-    }
+    const handler = setTimeout(() => {
+      if (open) {
+        dispatch(snackbarActions.hideSnackbar())
+      }
+    }, 4000)
+
     return () => {
       clearTimeout(handler)
     }
@@ -25,14 +32,16 @@ const Snackbar = () => {
   if (!open) return null
 
   return (
-    <SnackbarContainer variant={variant}>
-      {variant === variants.warning ? (
-        <WarningIcon data-testid="snackbar-warning-icon" />
-      ) : (
-        <ErrorIcon data-testid="snackbar-error-icon" />
-      )}
-      <p>{message}</p>
-    </SnackbarContainer>
+    <Container>
+      <SnackbarContainer variant={variant}>
+        {variant === variants.warning ? (
+          <WarningIcon data-testid="snackbar-warning-icon" />
+        ) : (
+          <ErrorIcon data-testid="snackbar-error-icon" />
+        )}
+        <span>{message}</span>
+      </SnackbarContainer>
+    </Container>
   )
 }
 
