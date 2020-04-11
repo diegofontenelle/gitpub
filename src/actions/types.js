@@ -9,5 +9,8 @@ export default {
   REPOS: {
     GET: 'GET_REPOS',
   },
-  ERROR: 'REQUEST_ERROR',
+  SNACKBAR: {
+    SHOW: 'SHOW_SNACKBAR',
+    HIDE: 'HIDE_LOADING',
+  },
 }
