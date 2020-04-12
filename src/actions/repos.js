@@ -12,7 +12,7 @@ const mountPaginationObject = links => {
   urls.forEach(url => {
     pages.push({
       index: getPageIndex(url),
-      url,
+      url: url.split('.com')[1],
     })
   })
 
@@ -46,9 +46,7 @@ const getReposByPage = url => async dispatch => {
   try {
     dispatch({ type: TYPES.LOADING.SHOW })
 
-    const endpoint = url.split('.com')[1]
-
-    const response = await api.get(endpoint)
+    const response = await api.get(url)
     const links = parse(response.headers.link)
     const pages = mountPaginationObject(links)
 
