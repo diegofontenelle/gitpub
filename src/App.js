@@ -3,15 +3,15 @@ import { Provider } from 'react-redux'
 import { Container } from './App.style'
 import Theme from './shared/Theme'
 import store from './store'
-import Home from './pages/Home'
 import Loading from './components/Loading'
 import Snackbar from './components/Snackbar'
+import Router from './routes'
 
 const App = () => (
   <Provider store={store}>
     <Theme>
       <Container data-testid="app">
-        <Home />
+        <Router />
       </Container>
       <Loading />
       <Snackbar />

@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 const Container = styled.div`
   align-items: center;
-  background: #fff;
+  background: #f4f4f4;
   border-radius: 4px;
   box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28);
   display: grid;
@@ -60,9 +60,4 @@ const Title = styled.p`
   word-break: break-all;
 `
 
-export {
-  Container,
-  Content,
-  Footer,
-  Title,
-}
+export { Container, Content, Footer, Title }

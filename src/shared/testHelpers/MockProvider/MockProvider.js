@@ -1,5 +1,6 @@
 import React from 'react'
 import { element, func, node, object, oneOfType } from 'prop-types'
+import { BrowserRouter } from 'react-router-dom'
 import { applyMiddleware, createStore } from 'redux'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
@@ -10,7 +11,9 @@ const mockStore = createStore(reducer, applyMiddleware(thunk))
 
 const MockProvider = ({ children }) => (
   <Provider store={mockStore}>
-    <Theme>{children}</Theme>
+    <Theme>
+      <BrowserRouter>{children}</BrowserRouter>
+    </Theme>
   </Provider>
 )
 
