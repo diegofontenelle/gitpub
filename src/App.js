@@ -6,15 +6,18 @@ import store from './store'
 import Loading from './components/Loading'
 import Snackbar from './components/Snackbar'
 import Router from './routes'
+import ErrorBoundary from './components/ErrorBoundary'
 
 const App = () => (
   <Provider store={store}>
     <Theme>
-      <Container data-testid="app">
-        <Router />
-      </Container>
-      <Loading />
-      <Snackbar />
+      <ErrorBoundary>
+        <Container data-testid="app">
+          <Router />
+        </Container>
+        <Loading />
+        <Snackbar />
+      </ErrorBoundary>
     </Theme>
   </Provider>
 )
