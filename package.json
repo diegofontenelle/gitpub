@@ -18,6 +18,7 @@
   "dependencies": {
     "@styled-icons/boxicons-regular": "^10.0.0",
     "@styled-icons/entypo": "^10.0.0",
+    "@styled-icons/octicons": "^10.1.0",
     "axios": "^0.19.2",
     "github-parse-link": "^1.1.1",
     "history": "^4.10.1",
