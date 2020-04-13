@@ -12,7 +12,7 @@ export default {
     },
     text: {
       light: '#bfbfbf',
-      link: '#326397',
+      link: '#4a94e2',
       main: '#434343',
     },
   },
