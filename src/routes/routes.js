@@ -9,7 +9,7 @@ const Router = () => (
       <Route path="/" exact>
         <Home />
       </Route>
-      <Route path="/repos/details" exact>
+      <Route path="/repos/:owner/:repo/details" exact>
         <RepoDetails />
       </Route>
     </Switch>
