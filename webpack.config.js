@@ -12,6 +12,7 @@ module.exports = (_env, argv) => {
     entry: path.resolve(__dirname, 'src', 'index.js'),
     output: {
       filename: '[name].[contenthash:8].bundle.js',
+      publicPath: '/',
       path: path.resolve(__dirname, 'dist'),
     },
     module: {
@@ -20,6 +21,11 @@ module.exports = (_env, argv) => {
           test: /\.js?/,
           exclude: /node_modules/,
           loader: 'babel-loader',
+          options: {
+            cacheDirectory: true,
+            cacheCompression: false,
+            envName: isProduction ? 'production' : 'development',
+          },
         },
         {
           test: /\.css$/,
@@ -68,8 +74,8 @@ module.exports = (_env, argv) => {
       },
     },
     plugins: [
-      isProduction
-        && new MiniCssExtractPlugin({
+      isProduction &&
+        new MiniCssExtractPlugin({
           filename: 'assets/css/[name].[contenthash:8].css',
           chunkFilename: 'assets/css/[name].[contenthash:8].chunk.css',
         }),
