@@ -10,7 +10,8 @@
     "start": "webpack-dev-server --open --mode development",
     "build": "webpack --mode production",
     "test": "jest --coverage=false",
-    "test:watch": "jest --coverage=false --watch"
+    "test:watch": "jest --coverage=false --watch",
+    "test:coverage": "jest --coverage=true"
   },
   "keywords": [],
   "author": "",
