@@ -19,6 +19,14 @@ const mountPaginationObject = links => {
   return pages
 }
 
+const handleError = (dispatch, error, message = 'Something went wrong') => {
+  dispatch({
+    type: TYPES.SNACKBAR.SHOW,
+    payload: { message, variant: 'error' },
+  })
+  dispatch({ type: TYPES.LOADING.HIDE, payload: error.duration })
+}
+
 const getRepos = query => async dispatch => {
   try {
     dispatch({ type: TYPES.LOADING.SHOW })
@@ -34,11 +42,21 @@ const getRepos = query => async dispatch => {
     dispatch({ type: TYPES.PAGINATION.SET, payload: pages })
     dispatch({ type: TYPES.LOADING.HIDE, payload: response.duration })
   } catch (error) {
+    handleError(dispatch, error)
+  }
+}
+
+const getOwnerData = (repo, callback, url) => async dispatch => {
+  try {
+    const { owner } = repo
+    const response = await api.get(`/users/${owner.login}`)
     dispatch({
-      type: TYPES.SNACKBAR.SHOW,
-      payload: { message: 'Something went wrong', variant: 'error' },
+      type: TYPES.REPOS.CURRENT.SET,
+      payload: { ...repo, owner: response.data },
     })
-    dispatch({ type: TYPES.LOADING.HIDE, payload: error.duration })
+    if (typeof callback === 'function') callback(url)
+  } catch (error) {
+    handleError(dispatch, error)
   }
 }
 
@@ -54,9 +72,8 @@ const getReposByPage = url => async dispatch => {
     dispatch({ type: TYPES.PAGINATION.SET, payload: pages })
     dispatch({ type: TYPES.LOADING.HIDE, payload: response.duration })
   } catch (error) {
-    dispatch({ type: TYPES.ERROR })
-    dispatch({ type: TYPES.LOADING.HIDE, payload: error.duration })
+    handleError(dispatch, error)
   }
 }
 
-export { getRepos, getReposByPage }
+export { getOwnerData, getRepos, getReposByPage }

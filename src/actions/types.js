@@ -8,6 +8,9 @@ export default {
   },
   REPOS: {
     GET: 'GET_REPOS',
+    CURRENT: {
+      SET: 'SET_CURRENT_REPO',
+    },
   },
   SNACKBAR: {
     SHOW: 'SHOW_SNACKBAR',

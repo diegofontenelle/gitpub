@@ -1,15 +1,8 @@
-import React, { useCallback } from 'react'
-import { string } from 'prop-types'
-import { useHistory } from 'react-router-dom'
+import React from 'react'
+import { func, string } from 'prop-types'
 import { Container, Footer, Title } from './Repository.style'
 
-const Repository = ({ name, owner }) => {
-  const history = useHistory()
-
-  const handleClick = useCallback(() => {
-    history.push(`repos/details`)
-  }, [history, name, owner])
-
+const Repository = ({ handleClick, name, owner }) => {
   return (
     <Container>
       <Title>{name}</Title>
@@ -24,6 +17,7 @@ const Repository = ({ name, owner }) => {
 }
 
 Repository.propTypes = {
+  handleClick: func.isRequired,
   name: string.isRequired,
   owner: string.isRequired,
 }

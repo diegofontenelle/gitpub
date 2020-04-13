@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 import { Background, Container } from './Home.style'
 import { repoActions } from '../../actions'
 import Search from '../../components/Search/Search'
@@ -13,6 +14,7 @@ const Home = () => {
   const [didFetch, setDidFetch] = useState(false)
   const repos = useSelector(state => state.repos.data)
   const dispatch = useDispatch()
+  const history = useHistory()
 
   const handleChange = useCallback(
     event => {
@@ -20,8 +22,18 @@ const Home = () => {
 
       setQuery(value)
     },
-    [setQuery],
+    [setQuery]
   )
+
+  const handleClick = useCallback((repo, name, owner) => {
+    dispatch(
+      repoActions.getOwnerData(
+        repo,
+        history.push,
+        `repos/${owner.login}/${name}/details`
+      )
+    )
+  }, [])
 
   useEffect(() => {
     const handler = setTimeout(() => {
@@ -39,8 +51,11 @@ const Home = () => {
       <Background />
       <Search handleChange={handleChange} />
       <RequestDuration />
-      {repos && repos.length > 0 ? <RepoList data={repos} />
-        : <EmptyState didFetch={didFetch} />}
+      {repos && repos.length > 0 ? (
+        <RepoList data={repos} handleClick={handleClick} />
+      ) : (
+        <EmptyState didFetch={didFetch} />
+      )}
       <Pagination />
     </Container>
   )
