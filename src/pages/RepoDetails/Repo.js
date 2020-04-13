@@ -63,7 +63,7 @@ Repo.propTypes = {
     forks: number,
     language: string,
     name: string,
-    open_issues: string,
+    open_issues: number,
     stargazers_count: number,
   }).isRequired,
 }
