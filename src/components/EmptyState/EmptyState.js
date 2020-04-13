@@ -1,6 +1,7 @@
 import React from 'react'
 import { bool } from 'prop-types'
-import { Background, Computer, Container, Message } from './EmptyState.style'
+import { Container, Message } from './EmptyState.style'
+import { Background, Computer } from '../../shared/animations'
 
 const EmptyState = ({ didFetch }) => {
   const mainMessage = didFetch

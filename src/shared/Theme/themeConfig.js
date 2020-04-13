@@ -15,8 +15,10 @@ export default {
       link: '#4a94e2',
       main: '#434343',
     },
+    error: '#f44336',
+    warning: '#ff9800',
   },
-  fonts: ['Roboto'],
+  fonts: ['Nunito'],
   fontSizes: {
     small: '1rem',
     medium: '1.25rem',
