@@ -9,10 +9,7 @@ const RequestDuration = () => {
 
   return (
     <RequestTime data-testid="request-time">
-      Fetched in
-      {' '}
-      {duration}
-      s
+      {`Fetched in ${duration}s`}
     </RequestTime>
   )
 }
