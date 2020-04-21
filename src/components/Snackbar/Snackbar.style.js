@@ -44,4 +44,6 @@ const SnackbarContainer = styled.div`
   }
 `
 
-export { Container, ErrorIcon, SnackbarContainer, WarningIcon }
+export {
+  Container, ErrorIcon, SnackbarContainer, WarningIcon,
+}

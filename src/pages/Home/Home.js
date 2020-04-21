@@ -22,7 +22,7 @@ const Home = () => {
 
       setQuery(value)
     },
-    [setQuery]
+    [setQuery],
   )
 
   const handleClick = useCallback((repo, name, owner) => {
@@ -30,8 +30,8 @@ const Home = () => {
       repoActions.getOwnerData(
         repo,
         history.push,
-        `repos/${owner.login}/${name}/details`
-      )
+        `repos/${owner.login}/${name}/details`,
+      ),
     )
   }, [])
 

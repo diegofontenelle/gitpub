@@ -12,26 +12,24 @@ api.interceptors.request.use(
 
     return reqConfig
   },
-  error => Promise.reject(error)
+  error => Promise.reject(error),
 )
 
 api.interceptors.response.use(
   response => {
     const res = response
     res.config.metadata.endTime = new Date()
-    res.duration =
-      (res.config.metadata.endTime - response.config.metadata.startTime) / 1000
+    res.duration = (res.config.metadata.endTime - response.config.metadata.startTime) / 1000
 
     return res
   },
   error => {
     const err = error
     err.config.metadata.endTime = new Date()
-    err.duration =
-      (err.config.metadata.endTime - error.config.metadata.startTime) / 1000
+    err.duration = (err.config.metadata.endTime - error.config.metadata.startTime) / 1000
 
     return Promise.reject(err)
-  }
+  },
 )
 
 export default api

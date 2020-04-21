@@ -1,6 +1,8 @@
 import React, { useCallback } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { FixedContainer, List, Page, TextButton } from './Pagination.style'
+import {
+  FixedContainer, List, Page, TextButton,
+} from './Pagination.style'
 import { repoActions } from '../../actions'
 
 const Pagination = () => {

@@ -29,10 +29,10 @@ const Owner = ({ data }) => {
 
       <Row>
         <a href={followersUrl} target="_blank" rel="noopener noreferrer">
-          {followers} followers
+          {`${followers} followers`}
         </a>
         <a href={reposUrl} target="_blank" rel="noopener noreferrer">
-          {publicRepos} public repos
+          {`${publicRepos} public repos`}
         </a>
         <a href={htmlUrl} target="_blank" rel="noopener noreferrer">
           Github page

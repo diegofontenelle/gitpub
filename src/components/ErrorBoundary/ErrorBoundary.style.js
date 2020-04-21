@@ -25,4 +25,6 @@ const Title = styled.h1`
   font-size: ${props => props.theme.fontSizes.large};
 `
 
-export { Container, ErrorMessage, Message, Title }
+export {
+  Container, ErrorMessage, Message, Title,
+}

@@ -1,5 +1,7 @@
 import React from 'react'
-import { element, func, node, object, oneOfType } from 'prop-types'
+import {
+  element, func, node, object, oneOfType,
+} from 'prop-types'
 import { BrowserRouter } from 'react-router-dom'
 import { applyMiddleware, createStore } from 'redux'
 import { Provider } from 'react-redux'

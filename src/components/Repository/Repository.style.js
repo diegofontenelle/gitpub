@@ -60,4 +60,6 @@ const Title = styled.p`
   word-break: break-all;
 `
 
-export { Container, Content, Footer, Title }
+export {
+  Container, Content, Footer, Title,
+}

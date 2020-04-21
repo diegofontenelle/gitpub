@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
-import { element, func, node, oneOfType } from 'prop-types'
-import { Container, ErrorMessage, Message, Title } from './ErrorBoundary.style'
+import {
+  element, func, node, oneOfType,
+} from 'prop-types'
+import {
+  Container, ErrorMessage, Message, Title,
+} from './ErrorBoundary.style'
 
 export default class ErrorBoundary extends Component {
   constructor(props) {
