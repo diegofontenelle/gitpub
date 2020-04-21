@@ -1,20 +1,19 @@
 import React from 'react'
-import { number, shape, string } from 'prop-types'
+import { number, string } from 'prop-types'
 import { RepoForked } from '@styled-icons/octicons/RepoForked'
 import { Star } from '@styled-icons/octicons/Star'
 import { IssueOpened } from '@styled-icons/octicons/IssueOpened'
 import { RepoData, Row } from './RepoDetails.style'
 
-const Repo = ({ data }) => {
-  const {
-    description,
-    forks,
-    language,
-    name,
-    created_at: createdDate,
-    open_issues: openIssues,
-    stargazers_count: stars,
-  } = data
+const Repo = ({
+  description,
+  forks,
+  language,
+  name,
+  created_at: createdDate,
+  open_issues: openIssues,
+  stargazers_count: stars,
+}) => {
   const date = new Date(createdDate)
   const month = date.getMonth()
   const createdAt = `${date.getDate()}/${
@@ -57,15 +56,13 @@ const Repo = ({ data }) => {
 }
 
 Repo.propTypes = {
-  data: shape({
-    created_at: string,
-    description: string,
-    forks: number,
-    language: string,
-    name: string,
-    open_issues: number,
-    stargazers_count: number,
-  }).isRequired,
+  created_at: string.isRequired,
+  description: string.isRequired,
+  forks: number.isRequired,
+  language: string.isRequired,
+  name: string.isRequired,
+  open_issues: number.isRequired,
+  stargazers_count: number.isRequired,
 }
 
 export default Repo

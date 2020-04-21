@@ -17,9 +17,10 @@ const RepoDetails = () => {
   const history = useHistory()
   const { current: repository } = useSelector(state => state.repos)
 
-  if (!repository) history.push('/')
-
-  if (!repository) return null
+  if (!repository) {
+    history.push('/')
+    return null
+  }
 
   return (
     <Container>
@@ -31,11 +32,11 @@ const RepoDetails = () => {
         <RequestDuration />
       </Navigation>
 
-      <Repo data={repository} />
+      <Repo {...repository} />
 
       <Divider />
 
-      <Owner data={repository.owner} />
+      <Owner {...repository.owner} />
     </Container>
   )
 }
