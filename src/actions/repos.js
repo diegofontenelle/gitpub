@@ -2,18 +2,17 @@ import parse from 'github-parse-link'
 import TYPES from './types'
 import api from '../shared/api'
 
-const getPageIndex = link => link.split('page=')[1]
-
 const mountPaginationObject = links => {
-  let urls = new Set(Object.values(links))
-  urls = [...urls]
   const pages = []
 
-  urls.forEach(url => {
-    pages.push({
-      index: getPageIndex(url),
-      url: url.split('.com')[1],
-    })
+  Object.values(links).forEach(link => {
+    const index = link.split('page=')[1]
+    if (!pages.some(page => page.index === index)) {
+      pages.push({
+        index,
+        url: link.split('.com')[1],
+      })
+    }
   })
 
   return pages
